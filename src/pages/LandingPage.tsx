@@ -72,7 +72,7 @@ const LandingPage = () => {
 
     // move the title and first name to the end and add a comma as a prefix.
   
-    const renamedUsers = [...users].map(
+    const renamedUsers = users.map(
       (user) => {
         
         let title = user.name.match(/(Mr\.|Mrs\.|Ms\.|Mx\.?)(?=\s)/i)
@@ -93,7 +93,7 @@ const LandingPage = () => {
       }
     )
 
-    const sortedUsers = [...renamedUsers].sort((a , b) => a.name.localeCompare(b.name));
+    const sortedUsers = renamedUsers.sort((a , b) => a.name.localeCompare(b.name));
 
     return sortedUsers
   }
