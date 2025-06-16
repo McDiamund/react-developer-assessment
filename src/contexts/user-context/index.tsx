@@ -6,7 +6,7 @@ type ErrorType = { message: string } | null;
 
 type UserContextType = {
     fetchUsers: () => Promise<any>;
-    setError: Dispatch<SetStateAction<ErrorType>>;
+    setError?: Dispatch<SetStateAction<ErrorType>>;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(undefined);
