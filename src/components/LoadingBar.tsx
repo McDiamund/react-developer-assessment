@@ -26,7 +26,6 @@ const LoadingBar = () => {
       backgroundRepeat: 'repeat-x',
       animation: 'moveGradient 4s linear infinite',
     }}>
-      {/* Optional content here */}
       <style>{`
         @keyframes moveGradient {
           0% {
