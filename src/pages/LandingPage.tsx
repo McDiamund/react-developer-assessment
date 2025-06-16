@@ -46,9 +46,9 @@ const LandingPage = () => {
 
       const users: User[] = await fetchUsers();
 
-      users.push({"name": "Mx. José Antonio de la Cruz Martínez Hernández", "address": { "street": "Norberto Crossing", "suite": "", "zipcode": "2305-1337"}})
+      users.push({"name": "Mr. José Antonio de la Cruz Martínez Hernández", "address": { "street": "Norberto Crossing", "suite": "", "zipcode": "2305-1337"}})
 
-      users.push({"name": "Mr. James Von Doe III", "address": { "street": "Norberto Crossing", "suite": "", "zipcode": "2305-1337"}})
+      users.push({"name": "Mx. James Von Doe III", "address": { "street": "Norberto Crossing", "suite": "", "zipcode": "2305-1337"}})
 
       const sortedUsers = sortRenameUser(users);
 
@@ -153,7 +153,7 @@ const LandingPage = () => {
             options={users}
             sx={{ width: "100%", marginBottom: "20px" }}
             getOptionLabel={(option: User) => option.name}
-            renderInput={(params) => <TextField {...params} label={isLoading ? "Loading..." : "User"} />}
+            renderInput={(params) => <TextField {...params} sx={{ backgroundColor: "white" }} label={isLoading ? "Loading..." : "User"} />}
             onChange={(event, value) => {
               setSelectedUser(value);
             }}
