@@ -1,11 +1,12 @@
 import { Alert, Snackbar } from "@mui/material";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 
 
 type ErrorType = { message: string } | null;
 
 type UserContextType = {
     fetchUsers: () => Promise<any>;
+    setError: Dispatch<SetStateAction<ErrorType>>;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -43,7 +44,8 @@ export const UserContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     }
 
     const ctx: UserContextType  = {
-        fetchUsers
+        fetchUsers,
+        setError
     }
 
     return (

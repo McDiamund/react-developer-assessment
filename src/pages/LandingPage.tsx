@@ -24,7 +24,7 @@ type User = {
 };
 
 const LandingPage = () => {
-  const { fetchUsers } = useUserContext();
+  const { fetchUsers, setError } = useUserContext();
   const [users, setUsers] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isLoading, setLoading] = useState(false);
@@ -46,9 +46,11 @@ const LandingPage = () => {
 
       const users: User[] = await fetchUsers();
 
-      users.push({"name": "Mr. José Antonio de la Cruz Martínez Hernández", "address": { "street": "Norberto Crossing", "suite": "", "zipcode": "2305-1337"}})
+      users.push({"name": "Dr. José Antonio de la Cruz Martínez Hernández", "address": { "street": "Norberto Crossing", "suite": "Unit 100", "zipcode": "2305-1337"}})
 
-      users.push({"name": "Mx. James Von Doe III", "address": { "street": "Norberto Crossing", "suite": "", "zipcode": "2305-1337"}})
+      users.push({"name": "Mx. James Von Doe III", "address": { "street": "Queens Landing", "suite": "Lot 49", "zipcode": "2305-1337"}})
+
+      users.push({"name": "Prof. Don Varun Green V", "address": { "street": "Name Testing", "suite": "Unit 6030", "zipcode": "2305-1337"}})
 
       const sortedUsers = sortRenameUser(users);
 
@@ -56,9 +58,15 @@ const LandingPage = () => {
         setUsers(sortedUsers);
         setLoading(false);
       }
-    } catch (err) {
+    } catch (err: unknown) {
       if (mounted) {
-        console.log(err);
+        if (err instanceof Error) {
+          console.log(err.message);
+          setError({ message: err.message });
+        } else {
+          console.log(err);
+          setError({ message: String(err) });
+        }
         setLoading(false);
       }
     }
@@ -75,7 +83,7 @@ const LandingPage = () => {
     const renamedUsers = users.map(
       (user) => {
         
-        let title = user.name.match(/(Mr\.|Mrs\.|Ms\.|Mx\.?)(?=\s)/i)
+        let title = user.name.match(/(Mr\.|Mrs\.|Ms\.|Mx\.|Dr\.|Prof\.?)(?=\s)/i)
 
         let firstNameRegex = /\p{L}+(?=\s)/u
         let firstName = firstNameRegex.exec(user.name);
