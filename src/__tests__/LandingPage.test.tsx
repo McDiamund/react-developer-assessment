@@ -1,4 +1,3 @@
-// src/__tests__/LandingPage.test.tsx
 import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import LandingPage from '../pages/LandingPage'
 import { UserContext } from '../contexts/user-context'
